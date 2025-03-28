@@ -1,0 +1,28 @@
+\documentclass[./../main.tex]{subfiles}
+\graphicspath{{img/}}
+\begin{document}
+    % \problempts{15}
+
+    \section{}
+    Considere los operadores
+
+    \begin{align*}
+        \hc{S} &= \ketbra{0}{0} - i\ketbra{1}{1},\\
+        \op{Y} &= -i\ketbra{0}{1} + i\ketbra{1}{0}.
+    \end{align*}
+
+    y los kets
+
+    \begin{align*}
+        \ket{\psi} &= \dfrac{1 + i}{2}\ket{0} + \dfrac{i}{2}\ket{1},\\
+        \ket{\phi} &= \dfrac{1}{\sqrt{2}}\ket{0} - \dfrac{\e^{i\theta}}{\sqrt{2}}\ket{1}.
+    \end{align*}
+
+    \begin{enumerate}
+        \item Muestre que los operadores son unitarios y que los kets están normalizados.
+        \item Calcule \(\braket{\phi}{\psi}\) y \(\braket{\psi}{\phi}\).
+        \item Calcule \(\op{T}\ket{\psi}\) y \(\hc{S}\ket{\phi}\).
+        \item Mida el estado \(\op{T}\ket{\psi}\) en la base computacional. ¿Cuál es la probabilidad de medir \(\ket{0}\) y \(\ket{1}\)?
+        \item Mida el estado \(\hc{S}\ket{\phi}\) en la base diagonal. ¿Cuál es la probabilidad de medir \(\ket{+}\) y \(\ket{-}\)?
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,48 @@
+\documentclass[twoside, digital, 11pt]{fc-hw-template}
+
+
+\title{Tarea}
+\author{Marcos López Merino}
+\instructor{Dr. Salvador E. Venegas Andraca}
+\duedate{2025-03-28}
+\assignno{01}
+\group{7169}
+\semester{Sem. 2025-2}
+\subject{Computación Cuántica I}
+
+% Custom bookmark 
+\makeatletter
+\let\oldHy@writebookmark\Hy@writebookmark
+\renewcommand{\Hy@writebookmark}[2]{%
+    \oldHy@writebookmark{#1}{Problema #2}%
+}
+\makeatother
+
+% Unitary vectors
+\newcommand*{\ex}{\op{e}{x}}
+\newcommand*{\ey}{\op{e}{y}}
+\newcommand*{\ez}{\op{e}{z}}
+
+\usepackage{phfqit}
+
+\begin{document}
+    \maketitle
+
+    % Problema 1
+    \subfile{exercises/exercise1.tex}
+    
+    % Problema 2
+    \subfileinclude{exercises/exercise2.tex}
+
+    % Problema 3
+    \subfileinclude{exercises/exercise3.tex}
+
+    % Problema 4
+    \subfileinclude{exercises/exercise4.tex}
+
+    % Problema 5
+    \subfileinclude{exercises/exercise5.tex}
+
+    % Problema 6
+    \subfileinclude{exercises/exercise6.tex}
+\end{document}
