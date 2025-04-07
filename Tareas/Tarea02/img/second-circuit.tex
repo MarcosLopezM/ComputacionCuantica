@@ -1,0 +1,11 @@
+\documentclass[border={10mm 2mm 2mm 2mm}]{standalone}
+
+\usepackage[braket, qm]{qcircuit}
+
+\begin{document}
+\Qcircuit @C=1em @R=1.2em @!R {
+    \lstick{\ket{0}} & \gate{\mathrm{H}} & \ctrl{1}     & \gate{\mathrm{H}} & \meter \\
+    \lstick{\ket{\phi}} & \qw & \multigate{1}{\mathrm{SWAP}} & \qw & \qw \\
+    \lstick{\ket{\psi}} & \qw & \ghost{\mathrm{SWAP}}        & \qw & \qw
+}
+\end{document}
