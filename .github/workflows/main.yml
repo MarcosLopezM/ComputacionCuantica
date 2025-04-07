@@ -9,7 +9,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          texlive_version: latest
+          texlive_version: 2023
           root_file: |
             Tareas/Tarea01/main.tex
             Tareas/Tarea02/main.tex
@@ -21,7 +21,7 @@ jobs:
             Tareas/Tarea02/fonts/linux-biolinum/*.otf
             Tareas/Tarea02/fonts/linux-libertine/*.otf
         env:
-          TEXINPUTS: "./:Tareas/Tarea01/:Tareas/Tarea02/:"
+          TEXINPUTS: "fc-hw-template.tex:Tareas/Tarea01/:Tareas/Tarea02/:"
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
