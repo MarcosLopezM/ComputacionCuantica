@@ -21,7 +21,7 @@ jobs:
             Tareas/Tarea02/fonts/linux-biolinum/*.otf
             Tareas/Tarea02/fonts/linux-libertine/*.otf
         env:
-          TEXINPUTS: "fc-hw-template.tex"
+          TEXINPUTS: "./:Tareas/Tarea01/:Tareas/Tarea02/:"
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
