@@ -12,6 +12,13 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           texlive_version: 2023
+          args: |
+            -interaction=nonstopmode
+            -synctex=1
+            -file-line-error
+            -shell-escape
+            -silent
+            -c
           root_file: |
             Tareas/Tarea01/main.tex
             Tareas/Tarea02/main.tex
