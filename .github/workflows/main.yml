@@ -25,10 +25,10 @@ jobs:
           latexmk_use_lualatex: true
           latexmk_shell_escape: true
           extra_fonts: |
-            Tareas/Tarea01/fonts/linux-biolinum/*.otf
-            Tareas/Tarea01/fonts/linux-libertine/*.otf
-            Tareas/Tarea02/fonts/linux-biolinum/*.otf
-            Tareas/Tarea02/fonts/linux-libertine/*.otf
+            fonts/linux-biolinum/*.otf
+            fonts/linux-libertine/*.otf
+            fonts/linux-biolinum/*.otf
+            fonts/linux-libertine/*.otf
         env:
           TEXINPUTS: "fc-hw-template.tex:Tareas/Tarea01/:Tareas/Tarea02/:"
       - name: Upload PDF file
