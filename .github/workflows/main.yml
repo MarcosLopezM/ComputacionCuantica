@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
+      - name: Install missing dependencies
+        run: sudo apt-get update && sudo apt-get install -y ncurses-bin
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
