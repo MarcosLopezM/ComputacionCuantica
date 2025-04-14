@@ -1,0 +1,10 @@
+\documentclass[border={2mm 2mm 2mm 2mm}]{standalone}
+
+\usepackage[braket, qm]{qcircuit}
+
+\begin{document}
+\Qcircuit @C=1em @R=1.2em @!R {
+    & \targ & \gate{\mathrm{Z}} & \ctrl{1} & \gate{\mathrm{H}} & \qw\\
+    & \ctrl{-1} & \gate{\mathrm{H}} & \targ & \qw & \qw
+}
+\end{document}

@@ -1,0 +1,12 @@
+\documentclass[margin=2mm, crop, border={8mm -2mm 26mm 2mm}]{standalone}
+
+\usepackage[braket, qm]{qcircuit}
+
+\begin{document}
+\Qcircuit @C=.5em @R=1.1em @!R {
+    \lstick{\ket{\psi}} & \qw & \gate{\mathrm{Y}} & \qw & \qw & \push{\rule{.3em}{0em}} & Y\ket{\psi} & & & \push{\rule{3em}{0em}} & \ket{\psi} & & & \qw & \multigate{1}{\mathrm{Y} \otimes \mathrm{X}} & \qw & \qw\\
+    \lstick{\ket{\phi}} & \qw & \gate{\mathrm{X}} & \qw & \qw & \push{\rule{1em}{0em}} & X\ket{\phi} & & & \push{\rule{3em}{0em}} & \ket{\phi} & & & \qw & \ghost{\mathrm{Y} \otimes \mathrm{X}} & \qw & \qw \gategroup{1}{17}{2}{17}{.9em}{\}} & \rstick{\raisebox{2.5em}{$(\mathrm{Y} \otimes \mathrm{X})$\ket{\psi \otimes \phi}}}\\
+    & & & & & & & & & \raisebox{7em}{$\Leftrightarrow$} & & &
+}
+
+\end{document}

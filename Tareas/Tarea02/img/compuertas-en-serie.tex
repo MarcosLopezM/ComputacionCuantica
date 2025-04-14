@@ -1,0 +1,9 @@
+\documentclass[margin=2mm, crop, border={5mm 2mm 8mm 2mm}]{standalone}
+
+\usepackage[braket, qm]{qcircuit}
+
+\begin{document}
+\Qcircuit @C=.5em @R=0em @!R {
+    \ket{\psi} & & & \qw & \gate{\mathrm{Y}} & \gate{\mathrm{X}} & \qw & \qw & \push{\rule{.3em}{0em}=\rule{.3em}{0em}} & \qw & \gate{\mathrm{X} \cdot \mathrm{Y}} & \qw & \qw & \push{\rule{2.5em}{0em}} & XY\ket{Y}
+}
+\end{document}
