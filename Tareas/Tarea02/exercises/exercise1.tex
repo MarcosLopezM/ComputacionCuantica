@@ -15,4 +15,51 @@
             0 & 0 & 1 & 0
         \end{pNiceMatrix}
     \end{equation*}
+
+    \startsolution
+
+    La compuerta \(\mathrm{CNOT}\) actúa sobre dos qubits, el primero es el qubit de control y el segundo es el qubit objetivo, por lo que su base de estados es \(\{\ket{00}, \ket{01}, \ket{10}, \ket{11}\}\). La acción de la compuerta \(\mathrm{CNOT}\) sobre los estados de la base es la siguiente:
+
+    \begin{align*}
+        \cnot \ket{00} &= \ket{00}\\
+        \cnot \ket{01} &= \ket{01}\\
+        \cnot \ket{10} &= \ket{11}\\
+        \cnot \ket{11} &= \ket{10}\\
+    \end{align*}
+
+    Queremos entonces encontrar la representación matricial de la compuerta \(\cnot\). Para ello recordamos que los elementos de la matriz se obtienen a partir de
+
+    \begin{equation*}
+        \cnot_{ij} = \matrixel{j}{\cnot}{i},
+    \end{equation*}
+
+    donde \(\ket{i}\) y \(\ket{j}\) son los estados de la base.
+    
+    Entonces, la matriz de la compuerta \(\cnot\) se puede escribir como
+
+    \begin{align*}
+        \cnot &= \begin{pNiceMatrix}
+            \matrixel{00}{\cnot}{00} & \matrixel{00}{\cnot}{01} & \matrixel{00}{\cnot}{10} & \matrixel{00}{\cnot}{11}\\
+            \matrixel{01}{\cnot}{00} & \matrixel{01}{\cnot}{01} & \matrixel{01}{\cnot}{10} & \matrixel{01}{\cnot}{11}\\
+            \matrixel{10}{\cnot}{00} & \matrixel{10}{\cnot}{01} & \matrixel{10}{\cnot}{10} & \matrixel{10}{\cnot}{11}\\
+            \matrixel{11}{\cnot}{00} & \matrixel{11}{\cnot}{01} & \matrixel{11}{\cnot}{10} & \matrixel{11}{\cnot}{11}
+        \end{pNiceMatrix},\\
+        &= \begin{pNiceMatrix}
+            \braket{00}{00} & \braket{00}{01} & \braket{00}{11} & \braket{00}{10}\\
+            \braket{01}{00} & \braket{01}{01} & \braket{01}{11} & \braket{01}{10}\\
+            \braket{10}{00} & \braket{10}{01} & \braket{10}{11} & \braket{10}{10}\\
+            \braket{11}{00} & \braket{11}{01} & \braket{11}{11} & \braket{11}{10}
+        \end{pNiceMatrix}.
+    \end{align*}
+
+    Por lo tanto,
+
+    \begin{empheq}[box=\mainresult]{equation*}
+        \cnot = \begin{pNiceMatrix}
+            1 & 0 & 0 & 0\\
+            0 & 1 & 0 & 0\\
+            0 & 0 & 0 & 1\\
+            0 & 0 & 1 & 0
+        \end{pNiceMatrix}.
+    \end{empheq}
 \end{document}
