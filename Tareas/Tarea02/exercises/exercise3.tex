@@ -16,4 +16,303 @@
     \begin{equation*}
         \ket{\Psi^{-}} = \dfrac{\ket{01} - \ket{10}}{\sqrt{2}}.
     \end{equation*}
+
+    \startsolution
+
+    El protocolo de teletransportación comienza con el qubit que Alice quiere enviarle a Bob. Este qubit es
+
+    \begin{equation*}
+        \qbC*{\psi} = \alpha\qbC*{0} - \beta\qbC*{1}.
+    \end{equation*}
+
+    Agregamos el subíndice \(C\) para distinguirlo de los estados \(A\) y \(B\).
+
+    El protocolo requiere que Alice y Bob compartan un par de qubits fuertemente entrelazados (par EPR) que eligieron previamente, para este caso en particular, usaremos el estado de Bell \(\qbAB*{\Psi^{-}}\),
+
+    \begin{equation*}
+        \qbAB*{\Psi^{-}} = \dfrac{\qbAB*{01} - \qbAB*{10}}{\sqrt{2}}.
+    \end{equation*}
+
+    Primero debemos obtener el estado completo del sistema, el estado completo producto tensorial de los tres qubits, i.e.
+
+    \begin{align*}
+        \ket{\Phi_{0}} &= \tensprod{\qbC*{\psi}}{\qbAB*{\Psi^{-}}} = \tensprod{\alpha\qbC*{0} - \beta\qbC*{1}}{\dfrac{\qbAB*{01} - \qbAB*{10}}{\sqrt{2}}},\\
+        &= \dfrac{1}{\sqrt{2}}\Bigl[\tensprod{\alpha\qbC*{0}}{(\qbAB*{01} - \qbAB*{10})} - \tensprod{\beta\qbC*{1}}{(\qbAB*{01} - \qbAB*{10})}\Bigr].
+    \end{align*}
+
+    Recordemos que Alice tiene dos qubits: \(C\), el que quiere enviar y \(A\), que forma parte del par EPR. Por lo tanto, debe realizar una medición local en los que qubits que posee. Desarrollando la expresión anterior tenemos
+
+    \begin{align}
+        \ket{\Phi_{0}} &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\qbC*{0}\qbAB*{01} - \alpha\qbC*{0}\qbAB*{10} - \beta\qbC*{1}\qbAB*{01} + \beta\qbC*{1}\qbAB*{10}\Bigr],\nonumber\\
+        \ket{\Phi_{0}} &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\qbCA*{00}\qbB*{1} - \alpha\qbCA*{01}\qbB*{0} - \beta\qbCA*{10}\qbB*{1} + \beta\qbCA*{11}\qbB*{0}\Bigr].\label{eq:qubits-A-group}
+    \end{align}
+
+    Dado que estamos trabajando en la base computacional, seguiremos los pasos mostrados en la \cref{fig:quantum-teleportation}. Primero aplicamos la compuerta \(\cnot\) a \cref{eq:qubits-A-group},
+
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[scale=1.6]{quantum-teleportation.pdf}
+        \caption{Diagrama del protocolo de teletransportación cuántica.}
+        \label{fig:quantum-teleportation}
+    \end{figure}
+
+    \begin{align}
+        \ket{\Phi_{1}} &= (\tensprod{\cnot}{\op{I}})\ket{\Phi_{0}},\nonumber\\
+        &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\cnot\qbCA{00}\qbB*{1} - \alpha\cnot\qbCA{01}\qbB*{0} - \beta\cnot\qbCA{10}\qbB*{1} + \beta\cnot\qbCA{11}\qbB*{0}\Bigr],\nonumber\\
+        &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\qbCA{00}\qbB*{1} - \alpha\qbCA{01}\qbB*{0} - \beta\qbCA{11}\qbB*{1} + \beta\qbCA{10}\qbB*{0}\Bigr],\nonumber\\
+        \ket{\Phi_{1}} &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\qbC*{0}\qbAB{01} - \alpha\qbC*{0}\qbAB{10} - \beta\qbC*{1}\qbAB{11} + \beta\qbC*{1}\qbAB{00}\Bigr].\label{eq:phi_1}
+    \end{align}
+
+    Ahora aplicamos la compuerta \(\op{H}\),
+
+    \begin{align}
+        \ket{\Phi_{2}} &= (\tensprod{\op{H}}{\op{I}}[\op{I}][nopar])\ket{\Phi_{1}},\nonumber\\
+        &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\op{H}\qbC*{0}\qbAB{01} - \alpha\op{H}\qbC*{0}\qbAB{10} - \beta\op{H}\qbC*{1}\qbAB{11} + \beta\op{H}\qbC*{1}\qbAB{00}\Bigr],\nonumber\\
+        &= \dfrac{1}{2}\Bigl[\alpha(\qbC*{0} + \qbC*{1})\qbAB{01} - \alpha(\qbC*{0} + \qbC*{1})\qbAB{10} - \beta(\qbC*{0} - \qbC*{1})\qbAB{11} + \beta(\qbC*{0} - \qbC*{1})\qbAB{00}\Bigr],\nonumber\\
+        &= \dfrac{1}{2}\Bigl[\textcolor{Goldenrod}{\alpha\ket{001}} + \textcolor{LimeGreen}{\alpha\ket{101}} - \textcolor{DarkViolet}{\alpha\ket{010}} - \textcolor{MidnightBlue}{\alpha\ket{110}} - \textcolor{DarkViolet}{\beta\ket{011}} + \textcolor{MidnightBlue}{\beta\ket{111}} + \textcolor{Goldenrod}{\beta\ket{000}} - \textcolor{LimeGreen}{\beta\ket{100}}\Bigr],\nonumber\\
+        \ket{\Phi_{2}} &= \dfrac{1}{2}\Bigl[\qbCA{00}(\beta\qbB*{0} + \alpha\qbB*{1}) + \qbCA{01}(-\alpha\qbB*{0} - \beta\qbB*{1}) + \qbCA{10}(-\beta\qbB*{0} + \alpha\qbB*{1}) + \qbCA{11}(-\alpha\qbB*{0} + \beta\qbB*{1})\Bigr].\label{eq:phi_2}
+    \end{align}
+
+    Ahora Alice realiza la medición local que se mencionó previamente, denotada por \(\ket{\Phi_{3}}\). Primero definimos los operadores de proyección para un qubit:
+
+    \begin{align*}
+        \op{P}{a_{0}}{\ket*{\psi}} &= \proj{0},\\
+        \op{P}{a_{1}}{\ket*{\psi}} &= \proj{1},\\
+        \op{P}{b_{0}}{\ket*{\Psi^{-}}} &= \proj{0},\\
+        \op{P}{b_{1}}{\ket*{\Psi^{-}}} &= \proj{1}. 
+    \end{align*}
+
+    Los subíndices indican los posibles resultados de las mediciones: \(\{a_{0}, a_{1}\}\) para \(\ket{\psi}\) y \(\{b_{0}, b_{1}\}\) para \(\ket{\Psi^{-}}\). 
+
+    Con base en los operados anteriores, definimos los operadores de proyección para dos qubits de la siguiente manera:
+
+    \begin{subequations}
+        \begin{alignat}{3}
+            \op{P}{\{a_{0}, b_{0}\}} &= \tensprod{\op{P}{a_{0}}{\ket{\psi}}}{\op{P}{b_{0}}{\ket{\Psi^{-}}}} &{}={}& \proj{0_{a_{0}}}\proj{0_{b_{0}}} &{}={}& \proj{00},\label{eq:proj_a0-b0}\\
+            \op{P}{\{a_{0}, b_{1}\}} &= \tensprod{\op{P}{a_{0}}{\ket{\psi}}}{\op{P}{b_{1}}{\ket{\Psi^{-}}}} &{}={}& \proj{0_{a_{0}}}\proj{1_{b_{1}}} &{}={}& \proj{01},\label{eq:proj_a0-b1}\\
+            \op{P}{\{a_{1}, b_{0}\}} &= \tensprod{\op{P}{a_{1}}{\ket{\psi}}}{\op{P}{b_{0}}{\ket{\Psi^{-}}}} &{}={}& \proj{1_{a_{1}}}\proj{0_{b_{0}}} &{}={}& \proj{10},\label{eq:proj_a1-b0}\\
+            \op{P}{\{a_{1}, b_{1}\}} &= \tensprod{\op{P}{a_{1}}{\ket{\psi}}}{\op{P}{b_{1}}{\ket{\Psi^{-}}}} &{}={}& \proj{1_{a_{1}}}\proj{1_{b_{1}}} &{}={}& \proj{11}.\label{eq:proj_a1-b1}
+        \end{alignat}
+    \end{subequations}
+
+    Ahora, se calcularán las probabilidades y los estados de post-medición para cada uno de los posibles resultados de la medición hecha por Alice.
+
+    \begin{itemize}
+        \item \(p(a_{0}, b_{0}) = \dmatrixel{\Phi_{2}}{\op{P}{\{a_{0}, b_{0}\}}}\)
+        
+        La probabilidad de obtener el resultado \(\{a_{0}, b_{0}\}\) es
+
+        {\allowdisplaybreaks
+            \begin{align*}
+                p(a_{0}, b_{0}) &= \dmatrixel{\Phi_{2}}{\op{P}{\{a_{0}, b_{0}\}}}\\
+                &= \begin{multlined}[t]
+                    \dfrac{1}{4}\Bigl[(\betac\bra{0} + \alphac\bra{1})\bra{00} + (-\alphac\bra{0} - \betac\bra{1})\bra{01} + (-\betac\bra{0} + \alphac\bra{1})\bra{10} + (-\alphac\bra{0} + \betac\bra{1})\bra{11}\Bigr]\\
+                    \proj{00}\Bigl[\ket{00}(\beta\ket{0} + \alpha\ket{1}) + \ket{01}(-\alpha\ket{0} - \beta\ket{1}) + \ket{10}(-\beta\ket{0} + \alpha\ket{1}) + \ket{11}(-\alpha\ket{0} + \beta\ket{1})\Bigr],
+                \end{multlined}\\
+                &= \begin{multlined}[t]
+                    \dfrac{1}{4}\Bigl[(\betac\bra{0} + \alphac\bra{1})\bra{00} + (-\alphac\bra{0} - \betac\bra{1})\bra{01} + (-\betac\bra{0} + \alphac\bra{1})\bra{10} + (-\alphac\bra{0} + \betac\bra{1})\bra{11}\Bigr]\\
+                    \shoveright[12cm]{\ket{00}(\beta\ket{0} + \alpha\ket{1}),}
+                \end{multlined}\\
+                &= \dfrac{1}{4}(\betac\bra{0} + \alphac\bra{1})(\beta\ket{0} + \alpha\ket{1}),\\
+                &= \dfrac{1}{4}\Bigl[\betac\beta\braket{0}{0} + \betac\alpha\braket{0}{1} + \alphac\beta\braket{1}{0} + \alphac\alpha\braket{1}{1}\Bigr],\\
+                &= \dfrac{1}{4}\Bigl[\norm{\alpha}^{2} + \norm{\beta}^{2}\Bigr],\\
+                \Aboxedsec{p(a_{0}, b_{0}) &= \dfrac{1}{4}.}
+            \end{align*}
+        }
+
+        El estado de post-medición correspondiente \(\ket{\psi}_{\{a_{0}, b_{0}\}}^{pm}\) está dado por
+
+        \begin{align}
+            \ket{\psi}_{\{a_{0}, b_{0}\}}^{pm} &= \dfrac{\op{P}{\{a_{0}, b_{0}\}}\ket{\Phi_{2}}}{\sqrt{\dmatrixel{\Phi_{2}}{\op{P}{\{a_{0}, b_{0}\}}}}} = \dfrac{\tfrac{1}{2}\ket{00}(\beta\ket{0} + \alpha\ket{1})}{\sqrt{1/4}},\nonumber\\
+            \Aboxedmain{\ket{\psi}_{\{a_{0}, b_{0}\}}^{pm} &= \qbCA{00}(\beta\qbB{0} + \alpha\qbB{1}).}\label{eq:post_measurement-a0-b0}
+        \end{align}
+    
+        \item \(p(a_{0}, b_{1}) = \dmatrixel{\Phi_{2}}{\op{P}{\{a_{0}, b_{1}\}}}\)
+        
+        La probabilidad de obtener el resultado \(\{a_{0}, b_{1}\}\) es
+
+        \begin{align*}
+            p(a_{0}, b_{1}) &= \dmatrixel{\Phi_{2}}{\op{P}{\{a_{0}, b_{1}\}}},\\
+            &= \begin{multlined}[t]
+                \dfrac{1}{4}\Bigl[(\betac\bra{0} + \alphac\bra{1})\bra{00} + (-\alphac\bra{0} - \betac\bra{1})\bra{01} + (-\betac\bra{0} + \alphac\bra{1})\bra{10} + (-\alphac\bra{0} + \betac\bra{1})\bra{11}\Bigr]\\
+                \shoveright[12cm]{\ket{01}(-\alpha\ket{0} - \beta\ket{1}),}
+            \end{multlined}\\
+            &= \dfrac{1}{4}(-\alphac\bra{0} - \betac\bra{1})(-\alpha\ket{0} - \beta\ket{1}),\\
+            \Aboxedsec{p(a_{0}, b_{1}) &= \dfrac{1}{4}.}
+        \end{align*}
+
+        El estado de post-medición correspondiente \(\ket{\psi}_{\{a_{0}, b_{1}\}}^{pm}\) está dado por
+
+        {\allowdisplaybreaks
+        \begin{align}
+            \ket{\psi}_{\{a_{0}, b_{1}\}}^{pm} &= \dfrac{\tfrac{1}{2}\ket{01}(-\alpha\ket{0} - \beta\ket{1})}{\sqrt{1/4}},\nonumber\\
+            \Aboxedmain{\ket{\psi}_{\{a_{0}, b_{1}\}}^{pm} &= \qbCA{01}(-\alpha\qbB{0} - \beta\qbB{1}).}\label{eq:post_measurement-a0-b1}
+        \end{align}
+        }
+
+        \item \(p(a_{1}, b_{0}) = \dmatrixel{\Phi_{2}}{\op{P}{\{a_{1}, b_{0}\}}}\)
+        
+        La probabilidad de obtener el resultado \(\{a_{1}, b_{0}\}\) es
+
+        \begin{align*}
+            p(a_{1}, b_{0}) &= \dmatrixel{\Phi_{2}}{\op{P}{\{a_{1}, b_{0}\}}},\\
+            &= \dfrac{1}{4}(-\betac\bra{0} + \alphac\bra{1})(-\beta\ket{0} + \alpha\ket{1}),\\
+            \Aboxedsec{p(a_{1}, b_{0}) &= \dfrac{1}{4}.}
+        \end{align*}
+
+        El estado de post-medición correspondiente \(\ket{\psi}_{\{a_{1}, b_{0}\}}^{pm}\) está dado por
+
+        \begin{align}
+            \ket{\psi}_{\{a_{1}, b_{0}\}}^{pm} &= \dfrac{\tfrac{1}{2}\ket{10}(-\beta\ket{0} + \alpha\ket{1})}{\sqrt{1/4}},\nonumber\\
+            \Aboxedmain{\ket{\psi}_{\{a_{1}, b_{0}\}}^{pm} &= \qbCA{10}(-\beta\qbB{0} + \alpha\qbB{1}).}\label{eq:post_measurement-a1-b0}
+        \end{align}
+        
+        \item \(p(a_{1}, b_{1}) = \dmatrixel{\Phi_{2}}{\op{P}{\{a_{1}, b_{1}\}}}\)
+        
+        La probabilidad de obtener el resultado \(\{a_{1}, b_{1}\}\) es
+
+        \begin{align*}
+            p(a_{1}, b_{1}) &= \dmatrixel{\Phi_{2}}{\op{P}{\{a_{1}, b_{1}\}}},\\
+            &= \dfrac{1}{4}(-\alphac\bra{0} + \betac\bra{1})(-\alpha\ket{0} + \beta\ket{1}),\\
+            \Aboxedsec{p(a_{1}, b_{1}) &= \dfrac{1}{4}.}
+        \end{align*}
+
+        El estado de post-medición correspondiente \(\ket{\psi}_{\{a_{1}, b_{1}\}}^{pm}\) está dado por
+
+        \begin{align}
+            \ket{\psi}_{\{a_{1}, b_{1}\}}^{pm} &= \dfrac{\tfrac{1}{2}\ket{11}(-\alpha\ket{0} + \beta\ket{1})}{\sqrt{1/4}},\nonumber\\
+            \Aboxedmain{\ket{\psi}_{\{a_{1}, b_{1}\}}^{pm} &= \qbCA{11}(-\alpha\qbB{0} + \beta\qbB{1}).}\label{eq:post_measurement-a1-b1}
+        \end{align}
+    \end{itemize}
+
+    Las ecuaciones \crefrange{eq:post_measurement-a0-b0}{eq:post_measurement-a1-b1} representan los posibles resultados debidos a la medición realizada por Alice, y cada uno indica en cuál de los cuatro estados se encuentra el sistema. Ahora Alice puede enviar el resultado a Bob a través de un canal clásico. Una vez que Bob recibe el mensaje, sabrá en qué estado se encuentra su qubit. A partir de esta información, Bob debe aplicar una serie de operadores unitarios a su qubit para transformarlo en el estado deseado \qbC{\psi}.
+
+    \subsection*{Caso 1. Resultado \(\{a_{0}, b_{0}\}\)}
+
+    La probabilidad de obtener \(\{a_{0}, b_{0}\}\) es
+
+    \begin{equation*}
+        p(a_{0}, b_{0}) = \dfrac{1}{4}.
+    \end{equation*}
+
+    Asimismo, el estado de post-medición correspondiente está dado por
+
+    \begin{equation*}
+        \ket{\psi}_{\{a_{0}, b_{0}\}}^{pm} = \qbCA{00}(\beta\qbB{0} + \alpha\qbB{1}).
+    \end{equation*}
+
+    Alice indica que su resultado es \qbCA{00} y, por tanto, sabe que el qubit de Bob se encuentra en el estado \(\beta\qbB{0} + \alpha\qbB{1}\). Y puesto que
+
+    % \begin{align*}
+    %     -i\op{\sigma}{y}(\beta\qbB{0} + \alpha\qbB{1}) &= (\ketbra{0}{1} - \ketbra{1}{0})(\beta\qbB{0} + \alpha\qbB{1}),\\
+    %     &= \beta\braket{1}{0}\ket{0} - \beta\braket{0}{0}\ket{1} + \alpha\braket{1}{1}\ket{0} - \alpha\braket{0}{1}\ket{1},\\
+    %     &= \alpha\qbB{0} - \beta\qbB{1}.
+    % \end{align*}
+    \begin{align*}
+        \op{\sigma}{z}(\op{\sigma}{x}(\beta\qbB{0} + \alpha\qbB{1})) &= \op{\sigma}{z}(\ketbra{0}{1} + \ketbra{1}{0})(\beta\qbB{0} + \alpha\qbB{1}),\\
+        &= \op{\sigma}{z}(\beta\braket{1}{0}\ket{0} + \beta\braket{0}{0}\ket{1} + \alpha\braket{1}{1}\ket{0} + \alpha\braket{0}{1}\ket{1}),\\
+        &= (\proj{0} - \proj{1})(\alpha\ket{0} + \beta\ket{1}),\\
+        &= \alpha\braket{0}{0}\ket{0} - \alpha\braket{1}{0}\ket{1} + \beta\braket{0}{1}\ket{0} - \beta\braket{1}{1}\ket{1},\\
+        &= \alpha\qbB{0} - \beta\qbB{1}.
+    \end{align*}
+
+    Entonces Alice se comunica con Bob mediante un canal clásico para informarle que
+
+    \begin{empheq}[box=\mainresult]{equation*}
+        \qbCA{\Psi_{3}} = \tensprod{\op{I}{C}}{\op{I}{A}}[(\op{\sigma}{z}\op{\sigma}{x})_{B}][nopar]\Bigl[\qbCA{00}(\beta\qbB{0} + \alpha\qbB{1})\Bigr].
+    \end{empheq}
+
+    Es decir, Bob debe aplicar el operador \(\op{\sigma}{z}\op{\sigma}{x}\) para preparar su qubit en el estado deseado.
+
+    \subsection*{Caso 2. Resultado \(\{a_{0}, b_{1}\}\)}
+
+    La probabilidad de obtener \(\{a_{0}, b_{1}\}\) es
+
+    \begin{equation*}
+        p(a_{0}, b_{1}) = \dfrac{1}{4}.
+    \end{equation*}
+
+    Asimismo, el estado de post-medición correspondiente está dado por
+
+    \begin{equation*}
+        \ket{\psi}_{\{a_{0}, b_{1}\}}^{pm} = \qbCA{01}(-\alpha\qbB{0} - \beta\qbB{1}).
+    \end{equation*}
+
+    Alice indica que su resultado es \qbCA{01} y, por tanto, sabe que el qubit de Bob se encuentra en el estado \(-\alpha\qbB{0} - \beta\qbB{1}\). Y puesto que
+
+    {\allowdisplaybreaks
+        \begin{align*}
+            -\op{\sigma}{z}(-\alpha{\qbB{0} - \beta\qbB{1}}) &= (-\ketbra{0}{0} + \ketbra{1}{1})(-\alpha\qbB{0} - \beta\qbB{1}),\\
+            &= \alpha\braket{0}{0}\ket{0} - \alpha\braket{1}{0}\ket{1} + \beta\braket{0}{1}\ket{0} - \beta\braket{1}{1}\ket{1},\\
+            &= \alpha\qbB{0} + \beta\qbB{1}.
+        \end{align*}
+    }
+
+    Entonces Alice se comunica con Bob mediante un canal clásico para informarle que
+
+    \begin{empheq}[box=\mainresult]{equation*}
+        \qbCA{\Psi_{3}} = \tensprod{\op{I}{C}}{\op{I}{A}}[(-\op{\sigma}{z})_{B}][nopar]\Bigl[\qbCA{01}(-\alpha\qbB{0} - \beta\qbB{1})\Bigr].
+    \end{empheq}
+
+    Es decir, Bob debe aplicar el operador \(-\op{\sigma}{z}\) para preparar su qubit en el estado deseado.
+
+    \subsection*{Caso 3. Resultado \(\{a_{1}, b_{0}\}\)}
+
+    La probabilidad de obtener \(\{a_{1}, b_{0}\}\) es
+
+    \begin{equation*}
+        p(a_{1}, b_{0}) = \dfrac{1}{4}.
+    \end{equation*}
+
+    Asimismo, el estado de post-medición correspondiente está dado por
+
+    \begin{equation*}
+        \ket{\psi}_{\{a_{1}, b_{0}\}}^{pm} = \qbCA{10}(-\beta\qbB{0} + \alpha\qbB{1}).
+    \end{equation*}
+
+    Alice indica que su resultado es \qbCA{10} y, por tanto, sabe que el qubit de Bob se encuentra en el estado \(-\beta\qbB{0} + \alpha\qbB{1}\). Y puesto que
+
+    \begin{align*}
+        \op{\sigma}{x}(-\beta\qbB{0} + \alpha\qbB{1}) &= (\ketbra{0}{1} + \ketbra{1}{0})(-\beta\qbB{0} + \alpha\qbB{1}),\\
+        &= -\beta\braket{1}{0}\ket{0} - \beta\braket{0}{0}\ket{1} + \alpha\braket{1}{1}\ket{0} + \alpha\braket{0}{1}\ket{1},\\
+        &= \alpha\qbB{0} - \beta\qbB{1}.
+    \end{align*}
+
+    Entonces Alice se comunica con Bob mediante un canal clásico para informarle que
+
+    \begin{empheq}[box=\mainresult]{equation*}
+        \qbCA{\Psi_{3}} = \tensprod{\op{I}{C}}{\op{I}{A}}[(\op{\sigma}{x})_{B}][nopar]\Bigl[\qbCA{10}(-\beta\qbB{0} + \alpha\qbB{1})\Bigr].
+    \end{empheq}
+
+    Es decir, Bob debe aplicar el operador \(\op{\sigma}{x}\) para preparar su qubit en el estado deseado.
+
+    \subsection*{Caso 4. Resultado \(\{a_{1}, b_{1}\}\)}
+
+    La probabilidad de obtener \(\{a_{1}, b_{1}\}\) es
+
+    \begin{equation*}
+        p(a_{1}, b_{1}) = \dfrac{1}{4}.
+    \end{equation*}
+
+    Asimismo, el estado de post-medición correspondiente está dado por
+
+    \begin{equation*}
+        \ket{\psi}_{\{a_{1}, b_{1}\}}^{pm} = \qbCA{11}(-\alpha\qbB{0} + \beta\qbB{1}).
+    \end{equation*}
+
+    Alice indica que su resultado es \qbCA{11} y, por tanto, sabe que el qubit de Bob se encuentra en el estado \(-\alpha\qbB{0} + \beta\qbB{1}\). Y puesto que
+
+    \begin{align*}
+        -\op{I}(-\alpha\qbB{0} + \beta\qbB{1}) &= (-\proj{0} - \proj{1})(-\alpha\qbB{0} + \beta\qbB{1}),\\
+        &= \alpha\braket{0}{0}\ket{0} + \alpha\braket{1}{0}\ket{1} - \beta\braket{0}{1}\ket{0} - \beta\braket{1}{1}\ket{1},\\
+        &= \alpha\qbB{0} - \beta\qbB{1}.
+    \end{align*}
+
+    Entonces Alice se comunica con Bob mediante un canal clásico para informarle que
+
+    \begin{empheq}[box=\mainresult]{equation*}
+        \qbCA{\Psi_{3}} = \tensprod{\op{I}{C}}{\op{I}{A}}[(-\op{I})_{B}][nopar]\Bigl[\qbCA{11}(-\alpha\qbB{0} + \beta\qbB{1})\Bigr].
+    \end{empheq}
+
+    Es decir, Bob debe aplicar el operador \(-\op{I}\) para preparar su qubit en el estado deseado.
 \end{document}
