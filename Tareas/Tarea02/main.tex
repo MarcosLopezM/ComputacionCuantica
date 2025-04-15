@@ -4,7 +4,7 @@
 \title{Tarea}
 \author{Marcos López Merino}
 \instructor{Dr. Salvador E. Venegas Andraca}
-\duedate{2025-04-11}
+\duedate{2025-04-23}
 \assignno{02}
 \group{7169}
 \semester{Sem. 2025--2}
@@ -20,7 +20,15 @@
 
 %%%%%%%%%% Specific packages %%%%%%%%%%
 \usepackage{phfqit}
-\usepackage{standalone}
+\usepackage[svgnames]{xcolor}
+
+%%%%%%%%%% Definitions %%%%%%%%%%
+% Colores
+\definecolor{aliceblue}{HTML}{1f77b4}
+\definecolor{bobred}{HTML}{d62728}
+\definecolor{charliegreen}{HTML}{2ca02c}
+\definecolor{abmagenta}{HTML}{e377c2}
+\definecolor{canorange}{HTML}{ff7f0e}
 
 %%%%%%%%%% Custom commands %%%%%%%%%%
 % Comando para producto tensorial
@@ -36,7 +44,44 @@
         {#1 \mathop{\otimes} #2 \mathop{\otimes} #3}% Sin paréntesis
     }%
 }
-
+% Comando para compuerta CNOT
+\newcommand*{\cnot}{\mathrm{CNOT}}
+% Comando para qubit de Alice, Bob y Charlie
+% Qubit de Alice
+\NewDocumentCommand{\qbA}{s m}{
+  \IfBooleanTF{#1}
+    {\ensuremath{\ket{#2}_A}}
+    {\textcolor{aliceblue}{\ensuremath{\ket{#2}_A}}}
+}
+% Qubit de Bob
+\NewDocumentCommand{\qbB}{s m}{
+  \IfBooleanTF{#1}
+    {\ensuremath{\ket{#2}_B}}
+    {\textcolor{bobred}{\ensuremath{\ket{#2}_B}}}
+}
+% Qubit a enviar
+\NewDocumentCommand{\qbC}{s m}{
+  \IfBooleanTF{#1}
+    {\ensuremath{\ket{#2}_C}}
+    {\textcolor{charliegreen}{\ensuremath{\ket{#2}_C}}}
+}
+% Qubits del par EPR o del estado de Bell
+\NewDocumentCommand{\qbAB}{s m}{
+  \IfBooleanTF{#1}
+    {\ensuremath{\ket{#2}_{AB}}}
+    {\textcolor{abmagenta}{\ensuremath{\ket{#2}_{AB}}}}
+}
+% Qubits a los que tiene acceso Alice
+\NewDocumentCommand{\qbCA}{s m}{
+  \IfBooleanTF{#1}
+    {\ensuremath{\ket{#2}_{CA}}}
+    {\textcolor{canorange}{\ensuremath{\ket{#2}_{CA}}}}
+}
+% Comando para conjugado de real
+% Alpha conjugado
+\newcommand*{\alphac}{\alpha^{*}}
+% Beta conjugado
+\newcommand*{\betac}{\beta^{*}}
 
 \begin{document}
     \maketitle
