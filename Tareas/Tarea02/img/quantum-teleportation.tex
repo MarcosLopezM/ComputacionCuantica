@@ -1,5 +1,5 @@
 % \documentclass[border={14mm 2mm 8mm 2mm}, crop]{standalone}
-\documentclass[margin=2mm, crop, border={14mm 8mm 12mm 2mm}]{standalone}
+\documentclass[margin=2mm, crop, border={14mm 8mm 12mm 6mm}]{standalone}
 
 \usepackage[braket, qm]{qcircuit}
 \usepackage{xcolor}
@@ -13,79 +13,83 @@
 % Qubit de Alice
 \NewDocumentCommand{\qbA}{s m}{
   \IfBooleanTF{#1}
-    {\ensuremath{\ket{#2}_A}}
-    {\textcolor{aliceblue}{\ensuremath{\ket{#2}_A}}}
+  {\ensuremath{\ket{#2}_A}}
+  {\textcolor{aliceblue}{\ensuremath{\ket{#2}_A}}}
 }
 % Qubit de Bob
 \NewDocumentCommand{\qbB}{s m}{
   \IfBooleanTF{#1}
-    {\ensuremath{\ket{#2}_B}}
-    {\textcolor{bobred}{\ensuremath{\ket{#2}_B}}}
+  {\ensuremath{\ket{#2}_B}}
+  {\textcolor{bobred}{\ensuremath{\ket{#2}_B}}}
 }
 % Qubit a enviar
 \NewDocumentCommand{\qbC}{s m}{
   \IfBooleanTF{#1}
-    {\ensuremath{\ket{#2}_C}}
-    {\textcolor{charliegreen}{\ensuremath{\ket{#2}_C}}}
+  {\ensuremath{\ket{#2}_C}}
+  {\textcolor{charliegreen}{\ensuremath{\ket{#2}_C}}}
 }
 % Qubits del par EPR o del estado de Bell
 \NewDocumentCommand{\qbAB}{s m}{
   \IfBooleanTF{#1}
-    {\ensuremath{\ket{#2}_{AB}}}
-    {\textcolor{abmagenta}{\ensuremath{\ket{#2}_{AB}}}}
+  {\ensuremath{\ket{#2}_{AB}}}
+  {\textcolor{abmagenta}{\ensuremath{\ket{#2}_{AB}}}}
 }
 % Qubits a los que tiene acceso Alice
 \NewDocumentCommand{\qbCA}{s m}{
   \IfBooleanTF{#1}
-    {\ensuremath{\ket{#2}_{CA}}}
-    {\textcolor{canorange}{\ensuremath{\ket{#2}_{CA}}}}
+  {\ensuremath{\ket{#2}_{CA}}}
+  {\textcolor{canorange}{\ensuremath{\ket{#2}_{CA}}}}
 }
 
 \begin{document}
 \Qcircuit @C=1.2em @R=1.2em @!R {
-    \ar@{--}[]+<3.5em,1em>;[dd]+<3.5em,-1em> &
-        \lstick{\qbC{\psi}}  & 
-            \qw & 
-                \qw \ar@{--}[]+<3.5em,1em>;[dd]+<3.5em,-1em> & 
-                    \ctrl{1} & 
-                        \qw \ar@{--}[]+<3.5em,1em>;[dd]+<3.5em,-1em>  & 
-                            \gate{\mathrm{H}}& 
-                                \qw &
-                                    \meter \ar@{--}[]+<2.5em,1em>;[dd]+<2.5em,-1em> &
-                                        \cw & 
-                                            \cw & 
-                                                \cw & 
-                                                    \cw \ar@{--}[]+<4em,1em>;[dd]+<4em,-1em> & 
-                                                        \control \cw \cwx[2]\\
-    \raisebox{-3em}{\qbAB{\Psi^{-}}}\rule{3.2em}{0em} & 
-         &
-            \qw & 
-                \qw & 
-                    \targ & 
-                        \qw & 
-                            \qw & 
-                                \qw & 
-                                    \meter & 
-                                        \cw & 
-                                            \cw & 
-                                                \control \cw \cwx[1]\\
-     &
-        &
-            \qw & 
-                \qw & 
-                    \qw & 
-                        \qw & 
-                            \qw &
-                                \qw & 
-                                    \qw & 
-                                        \qw & 
-                                            \qw & 
-                                                \gate{\mathrm{X}} & 
-                                                    \qw & 
-                                                        \gate{\mathrm{Z}} & 
-                                                            \qw & 
-                                                                \rstick{\qbB{\psi}} \qw
-                                                                \gategroup{2}{2}{3}{2}{1.1em}{\{}\\
+  \ar@{--}[]+<3.5em,1em>;[dd]+<3.5em,-1em> &
+  \lstick{\qbC{\psi}}  &
+  \qw &
+  \qw \ar@{--}[]+<3.5em,1em>;[dd]+<3.5em,-1em> &
+  \ctrl{1} &
+  \qw \ar@{--}[]+<3.5em,1em>;[dd]+<3.5em,-1em>  &
+  \gate{\mathrm{H}}&
+  \qw &
+  \meter \ar@{--}[]+<2.4em,1em>;[dd]+<2.4em,-1em> &
+  \cw &
+  \cw &
+  \cw &
+  \dstick{\raisebox{-1.4em}{\small Bob}} \cw \ar@{--}[]+<4em,1em>;[dd]+<4em,-1em> &
+  \control \cw \cwx[2]\\
+  \raisebox{-3em}{\qbAB{\Psi^{-}}}\rule{3.2em}{0em} &
+  &
+  \qw &
+  \qw &
+  \targ &
+  \qw &
+  \ustick{\raisebox{3.5em}{\small Alice}} \qw &
+  \qw &
+  \meter &
+  \cw &
+  \cw &
+  \control \cw \cwx[1]
+  &
+  &\\
+  &
+  &
+  \qw &
+  \qw &
+  \qw &
+  \qw &
+  \ustick{\raisebox{.3em}{\bfseries\tiny Medición del estado de Bell}} \qw &
+  \qw &
+  \qw &
+  \qw &
+  \qw &
+  \gate{\mathrm{X}} &
+  \dstick{\raisebox{-1.1em}{\bfseries\tiny Transformaciones unitarias}} \qw &
+  \gate{\mathrm{Z}} &
+  \qw &
+  \rstick{\qbB{\psi}} \qw
+  \gategroup{2}{2}{3}{2}{1.1em}{\{}
+    \gategroup{1}{5}{2}{9}{.9em}{-}
+    \gategroup{2}{12}{3}{14}{.7em}{-}\\
     & & & \ket{\Phi_{0}} & & \rule{.8em}{0em}\ket{\Phi_{1}} & & \rule{.1em}{0em}\ket{\Phi_{2}} & & \rule{1.8em}{0em}\ket{\Phi}^{pm} & & & & & \rule{.1em}{0em}\ket{\Phi_{3}}
-}
-\end{document}
+  }
+  \end{document}
