@@ -36,15 +36,15 @@
     Primero debemos obtener el estado completo del sistema, el estado completo producto tensorial de los tres qubits, i.e.
 
     \begin{align*}
-        \ket{\Phi_{0}} &= \tensprod{\qbC*{\psi}}{\qbAB*{\Psi^{-}}} = \tensprod{\alpha\qbC*{0} - \beta\qbC*{1}}{\dfrac{\qbAB*{01} - \qbAB*{10}}{\sqrt{2}}},\\
-        &= \dfrac{1}{\sqrt{2}}\Bigl[\tensprod{\alpha\qbC*{0}}{(\qbAB*{01} - \qbAB*{10})} - \tensprod{\beta\qbC*{1}}{(\qbAB*{01} - \qbAB*{10})}\Bigr].
+        \ket{\Phi_{0}} &= \tensprod{\qbC{\psi}}{\qbAB{\Psi^{-}}} = \tensprod{(\alpha\qbC{0} - \beta\qbC{1})}{\Biggl(\dfrac{\qbAB*{01} - \qbAB*{10}}{\sqrt{2}}\Biggr)},\\
+        &= \dfrac{1}{\sqrt{2}}\Bigl[\tensprod{\alpha\qbC{0}}{(\qbAB{01} - \qbAB{10})} - \tensprod{\beta\qbC{1}}{(\qbAB{01} - \qbAB{10})}\Bigr].
     \end{align*}
 
     Recordemos que Alice tiene dos qubits: \(C\), el que quiere enviar y \(A\), que forma parte del par EPR. Por lo tanto, debe realizar una medición local en los que qubits que posee. Desarrollando la expresión anterior tenemos
 
     \begin{align}
-        \ket{\Phi_{0}} &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\qbC*{0}\qbAB*{01} - \alpha\qbC*{0}\qbAB*{10} - \beta\qbC*{1}\qbAB*{01} + \beta\qbC*{1}\qbAB*{10}\Bigr],\nonumber\\
-        \ket{\Phi_{0}} &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\qbCA*{00}\qbB*{1} - \alpha\qbCA*{01}\qbB*{0} - \beta\qbCA*{10}\qbB*{1} + \beta\qbCA*{11}\qbB*{0}\Bigr].\label{eq:qubits-A-group}
+        \ket{\Phi_{0}} &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\qbC{0}\qbAB{01} - \alpha\qbC{0}\qbAB{10} - \beta\qbC{1}\qbAB{01} + \beta\qbC{1}\qbAB{10}\Bigr],\nonumber\\
+        \ket{\Phi_{0}} &= \dfrac{1}{\sqrt{2}}\Bigl[\alpha\qbCA{00}\qbB{1} - \alpha\qbCA{01}\qbB{0} - \beta\qbCA{10}\qbB{1} + \beta\qbCA{11}\qbB{0}\Bigr].\label{eq:qubits-A-group}
     \end{align}
 
     Dado que estamos trabajando en la base computacional, seguiremos los pasos mostrados en la \cref{fig:quantum-teleportation}. Primero aplicamos la compuerta \(\cnot\) a \cref{eq:qubits-A-group},
