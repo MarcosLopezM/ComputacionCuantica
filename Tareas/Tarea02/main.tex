@@ -37,11 +37,11 @@
 % \tensopt{A}{B}[C][nopar] → A ⊗ B ⊗ C * El cuarto argumentos puede ser cualquier cosa
 \NewDocumentCommand{\tensprod}{m m o o}{%
   \IfNoValueTF{#3}
-    {#1 \mathop{\otimes} #2}%
+    {#1 \mathbin{\mathop{\otimes}} #2}%
     {%
       \IfNoValueTF{#4}
-        {\left(#1 \mathop{\otimes} #2\right) \mathop{\otimes} #3}% Con paréntesis
-        {#1 \mathop{\otimes} #2 \mathop{\otimes} #3}% Sin paréntesis
+        {\left(#1 \mathbin{\mathop{\otimes}} #2\right) \mathbin{\mathop{\otimes}} #3}%
+        {#1 \mathbin{\mathop{\otimes}} #2 \mathbin{\mathop{\otimes}} #3}%
     }%
 }
 % Comando para compuerta CNOT
