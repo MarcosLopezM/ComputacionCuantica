@@ -61,4 +61,148 @@ Por lo tanto, con una sola llamada a la función podemos encontrar el regalo.
 \section{}
 
 Repita los cálculos anteriores con todo detalle; es decir, justifique cada igualdad presentada. Es suficiente que muestre hasta el caso \(f(00  \Rightarrow \ket{\psi}^{\text{p.m.}} \propto \ket{11}\), el resto de los casos los puede dar por sentados.
+
+\startsolution
+
+Primero obtenemos el estado inicial del sistema:
+
+\begin{align}
+	\ket{\psi_{0}} & = \tensprod{\ket{0}}{\ket{0}}[\ket{1}][nopar],\nonumber \\
+	\ket{\psi_{0}} & = \ket{001}.\label{eq:psi0}
+\end{align}
+
+Ahora, aplicamos las compuertas Hadamard, recordando que
+
+\begin{align*}
+	\op{H}\ket{0} & = \ket{+} = \dfrac{\ket{0} + \ket{1}}{\sqrt{2}}, \\
+	\op{H}\ket{1} & = \ket{-} = \dfrac{\ket{0} - \ket{1}}{\sqrt{2}}.
+\end{align*}
+
+Así,
+
+\begin{align*}
+	\ket{\psi_{1}} & = (\tensprod{\op{H}}{\op{H}}[\op{H}][nopar])\ket{001},           \\
+	               & = \tensprod{\op{H}\ket{0}}{\op{H}\ket{0}}[\op{H}\ket{1}][nopar], \\
+	               & = \tensprod{\ket{+}}{\ket{+}}[\ket{-}][nopar],                   \\
+	               & = \tensprod{\ket{+}^{\otimes 2}}{\ket{-}}.
+\end{align*}
+
+Por el resultado del problema 5 de la tarea 1, sabemos que
+
+\begin{align}
+	\ket{\psi_{1}}            & = \tfrac{1}{2}\sum_{i = 0}^{3}\tensprod{\ket{i}}{\ket{-}},\nonumber                                                  \\
+	                          & = \tfrac{1}{2}\sum_{x\in \{0,1\}^{2}}\tensprod{\ket{x}}{\ket{-}},\nonumber                                           \\
+	                          & = \tfrac{1}{2}\sum_{x\in \{0,1\}^{2}}\tensprod{\ket{x}}{\Biggl(\dfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)},\nonumber \\
+	\Aboxedsec{\ket{\psi_{1}} & = \dfrac{1}{2\sqrt{2}}\sum_{x\in \{0,1\}^{2}}\ket{x}(\ket{0} - \ket{1})}.\label{eq:psi1}
+\end{align}
+
+Para obtener el estado \(\ket{\psi_{2}}\), primero recordamos la definición del oráculo,
+
+\begin{equation*}
+	\op{U}{f}\ket{x}\ket{y} = \ket{x}\ket{y \oplus f(x)},
+\end{equation*}
+
+entonces
+
+\begin{align*}
+	\ket{\psi_{2}} & = \dfrac{1}{2\sqrt{2}}\sum_{x\in \{0,1\}^{2}}\op{U}{f}\ket{x}(\ket{0} - \ket{1}),                                                   \\
+	               & = \dfrac{1}{2\sqrt{2}}\sum_{x\in \{0,1\}^{2}}\ket{x}(\ket{f(x)} - \ket{1 \oplus f(x)}).\qquad \text{Ver pag. 7 Quantum Parallelism} \\
+\end{align*}
+
+Entonces, para cada \(x\), \(f(x)\) es \(0\) o \(1\), así que podemos escribir
+
+\begin{enumerate}
+	\item \(f(x) = 0\)
+
+	      \begin{equation*}
+		      \ket{f(x)} = \ket{0} \implies \ket{1 \oplus 0} = \ket{1}.
+	      \end{equation*}
+
+	      Entonces,
+
+	      \begin{equation*}
+		      = \dfrac{1}{2}\sum_{x\in \{0,1\}^{2}}\ket{x}\ket{-}.
+	      \end{equation*}
+
+	\item \(f(x) = 1\)
+
+	      \begin{equation*}
+		      \ket{f(x)} = \ket{1} \implies \ket{1 \oplus 1} = \ket{0}.
+	      \end{equation*}
+
+	      Entonces,
+
+	      \begin{equation*}
+		      = -\dfrac{1}{2}\sum_{x\in \{0,1\}^{2}}\ket{x}\ket{+}.
+	      \end{equation*}
+\end{enumerate}
+
+Por lo tanto,
+
+\begin{equation*}
+	\ket{\psi_{2}} = \dfrac{1}{2}\sum_{x\in \{0,1\}^{2}}(-1)^{f(x)}\ket{x}\ket{-}.
+\end{equation*}
+
+Pero como el tercer qubit regresa al estado \(\ket{-}\), podemos omitirlo en el resto del cálculo. Por esta razón, diremos que
+
+\begin{empheq}[box=\secondaryresult]{equation}
+	\ket{\psi_{2}} = \dfrac{1}{2}\sum_{x\in \{0,1\}^{2}}(-1)^{f(x)}\ket{x}.\label{eq:psi2}
+\end{empheq}
+
+Antes de continuar, desarrollamos \cref{eq:psi2}:,
+
+\begin{equation*}
+	\ket{\psi_{2}} = \dfrac{1}{2}\Bigl((-1)^{f(00)}\ket{00} + (-1)^{f(01)}\ket{01} + (-1)^{f(10)}\ket{10} + (-1)^{f(11)}\ket{11}\Bigr).
+\end{equation*}
+
+Aplicamos la compuerta \(\op{H}\),
+
+\begin{align*}
+	\ket{\psi_{3}} & = (\tensprod{\op{I}}{\op{H}})\ket{\psi_{2}},                                                                         \\
+	               & = \dfrac{1}{2}\Bigl((-1)^{f(00)}\ket{0+} + (-1)^{f(01)}\ket{0-} + (-1)^{f(10)}\ket{1+} + (-1)^{f(11)}\ket{1-}\Bigr).
+\end{align*}
+
+Para obtener el estado \(\ket{\psi_{4}}\), aplicamos la compuerta \(\cop\) a \(\ket{\psi_{3}}\):
+
+\begin{align*}
+	\ket{\psi_{4}} & = \cop\ket{\psi_{3}},                                                                                                                \\
+	               & = \dfrac{1}{2}\Bigl[(-1)^{f(00)}\cop\ket{0+} + (-1)^{f(01)}\cop\ket{0-} + (-1)^{f(10)}\cop\ket{1+} + (-1)^{f(11)}\cop\ket{1-}\Bigr].
+\end{align*}
+
+Calculamos cada uno de los términos:
+
+\begin{align*}
+	\dfrac{\cop\ket{00}}{\sqrt{2}} + \dfrac{\cop\ket{01}}{\sqrt{2}} & = \dfrac{\ket{00} + \ket{01}}{\sqrt{2}} = \ket{0+},  \\
+	\dfrac{\cop\ket{00}}{\sqrt{2}} - \dfrac{\cop\ket{01}}{\sqrt{2}} & = \dfrac{\ket{00} - \ket{01}}{\sqrt{2}} = \ket{0-},  \\
+	\dfrac{\cop\ket{10}}{\sqrt{2}} + \dfrac{\cop\ket{11}}{\sqrt{2}} & = \dfrac{\ket{11} + \ket{10}}{\sqrt{2}} = \ket{1+},  \\
+	\dfrac{\cop\ket{10}}{\sqrt{2}} - \dfrac{\cop\ket{11}}{\sqrt{2}} & = \dfrac{\ket{11} - \ket{10}}{\sqrt{2}} = -\ket{1-}.
+\end{align*}
+
+Entonces,
+
+\begin{empheq}[box=\secondaryresult]{equation}
+	\ket{\psi_{4}} = \dfrac{1}{2}\Bigl[(-1)^{f(00)}\ket{0+} + (-1)^{f(01)}\ket{0-} + (-1)^{f(10)}\ket{1+} - (-1)^{f(11)}\ket{1-}\Bigr].\label{eq:psi4}
+\end{empheq}
+
+Finalmente, para calcular el estado \(\ket{\psi_{5}}\), aplicamos la compuerta Hadamard a \cref{eq:psi4},
+
+\begin{empheq}[box=\secondaryresult]{equation}
+	\ket{\psi_{5}} = (\tensprod{\op{H}}{\op{I}})\ket{\psi_{4}} = \dfrac{1}{2}\Bigl[(-1)^{f(00)}\ket{++} + (-1)^{f(01)}\ket{+-} + (-1)^{f(10)}\ket{-+} - (-1)^{f(11)}\ket{--}\Bigr].\label{eq:psi5}
+\end{empheq}
+
+Ahora, consideraos el primer caso de los posibles resultados de la medición:
+
+\begin{enumerate}
+	\item \textbf{Caso \(\bm{f(00) = 1}\):}. Si \(f(00) = 1\), entonces \(f(01) = f(10) = f(11) = 0\), por lo que el estado post-medición es
+
+	      \begin{align*}
+		      \ket{\psi}^{\text{p.m.}}             & = \dfrac{1}{2}\Bigl((-1)^{1}\ket{++} + (-1)^{0}\ket{+-} + (-1)^{0}\ket{-+} - (-1)^{0}\ket{--}\Bigr),                                                                                                                                                                                                                                                                                                                                                                                             \\
+		                                           & = \dfrac{1}{2}\Bigl(-\ket{++} + \ket{+-} + \ket{-+} - \ket{--}\Bigr),                                                                                                                                                                                                                                                                                                                                                                                                                            \\
+		                                           & = \dfrac{1}{2}\Biggl[-\Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr) + \Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr) + \Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr) - \Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)\Biggr],                                                  \\
+		                                           & = \begin{multlined}[t]\dfrac{1}{4}\Biggl[-\ket{00} - \ket{01} - \ket{10} - \ket{11} + \ket{00} - \ket{01} + \ket{10} + \ket{11}\\ + \ket{00} + \ket{01} - \ket{10} - \ket{11} - \ket{00} + \ket{01} + \ket{10} - \ket{11}\Biggr],\end{multlined} \\
+		                                           & = \dfrac{1}{4}\Bigl[-4\ket{11}\Bigr],                                                                                                                                                                                                                                                                                                                                                                                                                                                            \\
+		                                           & = -\ket{11},                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     \\
+		      \Aboxedmain{\ket{\psi}^{\text{p.m.}} & \propto \ket{11}.}
+	      \end{align*}
+\end{enumerate}
 \end{document}
