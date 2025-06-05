@@ -8,6 +8,73 @@
 Sean \(\op{U}\) una compuerta unitaria que actúa sore un qubit y \(\theta\in\bm{R}\) una constante. Muestre que:
 \begin{enumerate}
 	\item \(\op{U} \equiv \textrm{e}^{i\theta\op{U}}\), con \(i^{2} = -1\). \emph{Hint: considere la acción de cada compuerta sobre un qubit arbitrario, \(\ket{\psi}\)}.
-	\item \(c\-\op{U}\) no es una general equivalente a \(c\-\textrm{e}^{i\theta}\op{U}\), donde \(c\-\) denota una compuerta controlada. \emph{Hint: considere la acción de cada copuerta sobre un qubit arbitrario, \(\ket{\psi}\), usnado como qubit de control a un qubit de la base computacional.}
+
+	      \startsolution
+
+	      Para determinar si ambos operadores son equivalentes, debemos analizar su acción sobre un qubit arbitrario \(\ket{\psi}\), tal que
+
+	      \begin{align}
+		      \op{U}\ket{\psi}                     & ,\label{eq:U_Psi}                                                    \\
+		      \mathrm{e}^{i\theta}\op{U}\ket{\psi} & = \mathrm{e}^{i\theta}(\op{U}\ket{\psi}).\label{eq:Glob_Phase_U-Psi}
+	      \end{align}
+
+	      Es decir, el estado que resultado de \cref{eq:Glob_Phase_U-Psi} es el mismo que el de \cref{eq:U_Psi}, ya que \(\mathrm{e}^{i\theta}\) es una fase global, la cual no afecta las probabilidades o mediciones. Por lo tanto,
+
+	      \begin{empheq}[box=\mainresult]{equation*}
+		      \op{U} \equiv \mathrm{e}^{i\theta}\op{U}.
+	      \end{empheq}
+
+	      \pagebreak
+	\item \(\cnot\op{U}\) no es una general equivalente a \(\cnot\textrm{e}^{i\theta}\op{U}\), donde \(\cnot\) denota una compuerta controlada. \emph{Hint: considere la acción de cada compuerta sobre un qubit arbitrario, \(\ket{\psi}\), usando como qubit de control a un qubit de la base computacional.}
+
+	      \startsolution
+	      Para probar que en general \(\cnot\op{U}\) no es equivalente a \(\cnot\mathrm{e}^{i\theta}\op{U}\), consideramos los diferentes casos de un qubit de control en la base computacional, \(\ket{0}\) y \(\ket{1}\), i.e.,
+	      \begin{equation*}
+		      \ket{0\psi} \qquad \ket{1\psi}.
+	      \end{equation*}
+
+	      \begin{enumerate}
+		      \item \(\ket{0\psi}\)
+
+		            Para \(\cnot\op{U}\),
+
+		            \begin{equation*}
+			            \cnot\op{U}\ket{0\psi} = \ket{0\psi}.
+		            \end{equation*}
+
+		            Y, para \(\cnot\mathrm{e}^{i\theta}\op{U}\),
+
+		            \begin{equation*}
+			            \cnot\mathrm{e}^{i\theta}\op{U}\ket{0\psi} = \ket{0\psi}.
+		            \end{equation*}
+
+		            Por lo tanto, cuando el qubit de control es \(\ket{0}\), ambas compuertas actúan de la misma manera, i.e.,
+
+		            \begin{empheq}[box=\mainresult]{equation*}
+			            \cnot\op{U} \equiv \cnot\mathrm{e}^{i\theta}\op{U}.
+		            \end{empheq}
+
+		      \item \(\ket{1\psi}\)
+
+		            Para \(\cnot\op{U}\),
+
+		            \begin{equation*}
+			            \cnot\op{U}\ket{1\psi} = \tensprod{1}{\op{U}\ket{\psi}}.
+		            \end{equation*}
+
+		            Y,
+
+		            \begin{equation*}
+			            \cnot\mathrm{e}^{i\theta}\op{U}\ket{1\psi} = \tensprod{1}{\mathrm{e}^{i\theta}\op{U}\ket{\psi}}.
+		            \end{equation*}
+
+		            Por lo tanto, cuando el qubit de control es \(\ket{1}\),
+
+		            \begin{empheq}[box=\mainresult]{equation*}
+			            \cnot\op{U} \not\equiv \cnot\mathrm{e}^{i\theta}\op{U},
+		            \end{empheq}
+
+		            ya que la fase \(\mathrm{e}^{i\theta}\) se convierte en una fase relativa, pues tiene efecto en el qubit \(\ket{\psi}\) y no en el estado completo.
+	      \end{enumerate}
 \end{enumerate}
 \end{document}
