@@ -2,21 +2,53 @@
 \graphicspath{{img/}}
 
 \begin{document}
-    \problempts{25}
+\problempts{25}
 
-    \section{}
+\section{}
 
 Muestre que
 
 \begin{equation*}
-  \op{T}\op{X}\hc{T} = \textrm{e}^{-i\pi/4}\op{Y}\op{S},
-  % \label{eq:}
+	\op{T}\op{X}\hc{T} = \textrm{e}^{-i\pi/4}\op{Y}\op{S},
+	% \label{eq:}
 \end{equation*}
 
 con
 
 \begin{align*}
-  \op{T} &= \begin{bNiceMatrix}1 & 0\\ 0 & \textrm{e}^{i\pi/4}\end{bNiceMatrix},\quad \hc{T} = \begin{bNiceMatrix}1 & 0\\0 & \textrm{e}^{-i\pi/4}\end{bNiceMatrix},\\
-  \op{X} &= \begin{bNiceMatrix}0 & 1\\1 & 0\end{bNiceMatrix},\quad \op{Y} = \begin{bNiceMatrix}0 & -i\\i & 0\end{bNiceMatrix}, \quad\op{S} = \begin{bNiceMatrix}1 & 0\\0 & -i\end{bNiceMatrix}.
+	\op{T} & = \begin{bNiceMatrix}1 & 0\\ 0 & \textrm{e}^{i\pi/4}\end{bNiceMatrix},\quad \hc{T} = \begin{bNiceMatrix}1 & 0\\0 & \textrm{e}^{-i\pi/4}\end{bNiceMatrix},                             \\
+	\op{X} & = \begin{bNiceMatrix}0 & 1\\1 & 0\end{bNiceMatrix},\quad \op{Y} = \begin{bNiceMatrix}0 & -i\\i & 0\end{bNiceMatrix}, \quad\op{S} = \begin{bNiceMatrix}1 & 0\\0 & -i\end{bNiceMatrix}.
 \end{align*}
+
+\startsolution
+
+Primero calculamos LHS:
+
+\begin{align*}
+	\op{T}\op{X}\hc{T} & = \begin{bNiceMatrix}1 & 0\\ 0 & \mathrm{e}^{i\pi/4}\end{bNiceMatrix} \begin{bNiceMatrix}0 & 1\\1 & 0\end{bNiceMatrix} \begin{bNiceMatrix}1 & 0\\0 & \mathrm{e}^{-i\pi/4}\end{bNiceMatrix} \\
+	                   & = \begin{bNiceMatrix}0 & 1\\\mathrm{e}^{i\pi/4} & 0\end{bNiceMatrix} \begin{bNiceMatrix}1 & 0\\0 & \mathrm{e}^{-i\pi/4}\end{bNiceMatrix}                                                   \\
+	                   & = \begin{bNiceMatrix}0 & \mathrm{e}^{-i\pi/4}\\\mathrm{e}^{i\pi/4} & 0\end{bNiceMatrix}.
+\end{align*}
+
+Ahora calculamos RHS:
+
+\begin{align*}
+	\mathrm{e}^{-i\pi/4}\op{Y}\op{S} & = \mathrm{e}^{-i\pi/4} \begin{bNiceMatrix}0 & -i\\i & 0\end{bNiceMatrix} \begin{bNiceMatrix}1 & 0\\0 & i\end{bNiceMatrix} \\
+	                                 & = \mathrm{e}^{-i\pi/4} \begin{bNiceMatrix}0 & 1\\ i & 0\end{bNiceMatrix}                                                  \\
+	                                 & = \begin{bNiceMatrix}0 & \mathrm{e}^{-i\pi/4}\\ i\mathrm{e}^{-i\pi/4} & 0\end{bNiceMatrix}.
+\end{align*}
+
+\pagebreak
+Si escribimos \(i\) en su forma polar, \(i = \mathrm{e}^{i\pi/2}\), el resultado anterior se convierte en
+
+\begin{align*}
+	\mathrm{e}^{-i\pi/4}\op{Y}\op{S} & = \begin{bNiceMatrix}0 & \mathrm{e}^{-i\pi/4}\\ \mathrm{e}^{i\pi/2 - i\pi/4} & 0\end{bNiceMatrix}, \\
+	                                 & = \begin{bNiceMatrix}0 & \mathrm{e}^{-i\pi/4}\\ \mathrm{e}^{i\pi/4} & 0\end{bNiceMatrix}.
+\end{align*}
+
+Por lo tanto,
+
+\begin{empheq}[box=\mainresult]{equation*}
+	\op{T}\op{X}\hc{T} = \mathrm{e}^{-i\pi/4}\op{Y}\op{S}.
+\end{empheq}
 \end{document}
