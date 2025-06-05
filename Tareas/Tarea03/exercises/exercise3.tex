@@ -3,12 +3,12 @@
 \begin{document}
 \problempts{50}
 
-Se nos promete que una de cuatro cajas dadas contiene un regalo. Las cajas están enumeradas como \(00, 01, 10\) y \(11\). La función \(f \colon \{0,1\}^2 \to \{0,1\}\) devuelve \(1\) si la caja contiene el regalo y un \(0\) en caso contario.
-A continuación se muestra que podemos descubrir en qué caja se encuentra el regalo con sólo una llmada a esta función. Comenzamos inicializando el estado cuántico \(\ket{++-}\) y aplicando la función \(f\). Luego, transformamos los dos primeros qubits utilizando el siguiente circuito y finalmente realizamos la medición.
+Se nos promete que una de cuatro cajas dadas contiene un regalo. Las cajas están enumeradas como \(00, 01, 10\) y \(11\). La función \(f \colon \{0,1\}^2 \to \{0,1\}\) devuelve \(1\) si la caja contiene el regalo y un \(0\) en caso contrario.
+A continuación se muestra que podemos descubrir en qué caja se encuentra el regalo con sólo una llamada a esta función. Comenzamos inicializando el estado cuántico \(\ket{++-}\) y aplicando la función \(f\). Luego, transformamos los dos primeros qubits utilizando el siguiente circuito y finalmente realizamos la medición.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.6\textwidth]{example-image-a}
+	\includegraphics[width=0.6\textwidth]{circuito-algoritmo.pdf}
 \end{figure}
 
 \subsection*{Demostración}
@@ -23,15 +23,15 @@ A continuación se muestra que podemos descubrir en qué caja se encuentra el re
 	      \begin{equation*}
 		      \ket{\psi_{2}} = \tfrac{1}{2}\sum_{x\in \{0,1\}^{2}}(-1)^{f(x)}\ket{x}.
 	      \end{equation*}
-	\item \(\ket{\psi_{3}} = (\tensprod{\op{I}}{\op{H}}\ket{\psi_{2}} = \tfrac{1}{2}\biggl((-1)^{f(00)}\ket{0+} + (-1)^{f(01)}\ket{0-} + (-1)^{f(10)}\ket{0+} + (-1)^{f(11)}\ket{1-}\biggr).\)
-	\item \(\ket{\psi_{4}} = \cnot\ket{\psi_{3}} = \tfrac{1}{2}\biggl((-1)^{f(00)}\ket{0+} + (-1)^{f(01)}\ket{0-} + (-1)^{f(10)}\ket{0+} + (-1)^{f(11)}\ket{1-}\biggr).\)
-	\item \(\ket{\psi_{5}} = (\tensprod{\op{H}}{\op{I}}\ket{\psi_{4}} = \tfrac{1}{2}\biggl((-1)^{f(00)}\ket{++} + (-1)^{f(01)}\ket{+-} + (-1)^{f(10)}\ket{-+} - (-1)^{f(11)}\ket{--}\biggr).\)
+	\item \(\ket{\psi_{3}} = (\tensprod{\op{I}}{\op{H}}\ket{\psi_{2}} = \tfrac{1}{2}\bigl((-1)^{f(00)}\ket{0+} + (-1)^{f(01)}\ket{0-} + (-1)^{f(10)}\ket{0+} + (-1)^{f(11)}\ket{1-}\biggr).\)
+	\item \(\ket{\psi_{4}} = \cnot\ket{\psi_{3}} = \tfrac{1}{2}\bigl((-1)^{f(00)}\ket{0+} + (-1)^{f(01)}\ket{0-} + (-1)^{f(10)}\ket{0+} + (-1)^{f(11)}\ket{1-}\biggr).\)
+	\item \(\ket{\psi_{5}} = (\tensprod{\op{H}}{\op{I}}\ket{\psi_{4}} = \tfrac{1}{2}\bigl((-1)^{f(00)}\ket{++} + (-1)^{f(01)}\ket{+-} + (-1)^{f(10)}\ket{-+} - (-1)^{f(11)}\ket{--}\biggr).\)
 \end{itemize}
 
 Consideremos todos los resultados posibles de la medición:
 
 \begin{itemize}
-	\item \textbf{Caso \(\bm{f(00) = 1}\):}. Si \(f(00) = 1\), entonces \(f(01) = f(10) = f(11) = 0\), por lo que el estado pors-medición es
+	\item \textbf{Caso \(\bm{f(00) = 1}\):}. Si \(f(00) = 1\), entonces \(f(01) = f(10) = f(11) = 0\), por lo que el estado post-medición es
 
 	      \begin{equation*}
 		      \ket{\psi}^{\text{p.m.}} = \tfrac{1}{2}\bigl(-\ket{++} + \ket{+-} + \ket{-+} - \ket{--}\bigr) \propto \ket{11}.
@@ -90,10 +90,10 @@ Así,
 Por el resultado del problema 5 de la tarea 1, sabemos que
 
 \begin{align}
-	\ket{\psi_{1}}            & = \tfrac{1}{2}\sum_{i = 0}^{3}\tensprod{\ket{i}}{\ket{-}},\nonumber                                                  \\
-	                          & = \tfrac{1}{2}\sum_{x\in \{0,1\}^{2}}\tensprod{\ket{x}}{\ket{-}},\nonumber                                           \\
-	                          & = \tfrac{1}{2}\sum_{x\in \{0,1\}^{2}}\tensprod{\ket{x}}{\Biggl(\dfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)},\nonumber \\
-	\Aboxedsec{\ket{\psi_{1}} & = \dfrac{1}{2\sqrt{2}}\sum_{x\in \{0,1\}^{2}}\ket{x}(\ket{0} - \ket{1})}.\label{eq:psi1}
+	\ket{\psi_{1}}             & = \tfrac{1}{2}\sum_{i = 0}^{3}\tensprod{\ket{i}}{\ket{-}},\nonumber                                                 \\
+	                           & = \tfrac{1}{2}\sum_{x\in \{0,1\}^{2}}\tensprod{\ket{x}}{\ket{-}},\nonumber                                          \\
+	                           & = \tfrac{1}{2}\sum_{x\in \{0,1\}^{2}}\tensprod{\ket{x}}{\bigl(\dfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)},\nonumber \\
+	\Aboxedmain{\ket{\psi_{1}} & = \dfrac{1}{2\sqrt{2}}\sum_{x\in \{0,1\}^{2}}\ket{x}(\ket{0} - \ket{1})}.\label{eq:psi1}
 \end{align}
 
 Para obtener el estado \(\ket{\psi_{2}}\), primero recordamos la definición del oráculo,
@@ -145,7 +145,7 @@ Por lo tanto,
 
 Pero como el tercer qubit regresa al estado \(\ket{-}\), podemos omitirlo en el resto del cálculo. Por esta razón, diremos que
 
-\begin{empheq}[box=\secondaryresult]{equation}
+\begin{empheq}[box=\mainresult]{equation}
 	\ket{\psi_{2}} = \dfrac{1}{2}\sum_{x\in \{0,1\}^{2}}(-1)^{f(x)}\ket{x}.\label{eq:psi2}
 \end{empheq}
 
@@ -180,13 +180,13 @@ Calculamos cada uno de los términos:
 
 Entonces,
 
-\begin{empheq}[box=\secondaryresult]{equation}
+\begin{empheq}[box=\mainresult]{equation}
 	\ket{\psi_{4}} = \dfrac{1}{2}\Bigl[(-1)^{f(00)}\ket{0+} + (-1)^{f(01)}\ket{0-} + (-1)^{f(10)}\ket{1+} - (-1)^{f(11)}\ket{1-}\Bigr].\label{eq:psi4}
 \end{empheq}
 
 Finalmente, para calcular el estado \(\ket{\psi_{5}}\), aplicamos la compuerta Hadamard a \cref{eq:psi4},
 
-\begin{empheq}[box=\secondaryresult]{equation}
+\begin{empheq}[box=\mainresult]{equation}
 	\ket{\psi_{5}} = (\tensprod{\op{H}}{\op{I}})\ket{\psi_{4}} = \dfrac{1}{2}\Bigl[(-1)^{f(00)}\ket{++} + (-1)^{f(01)}\ket{+-} + (-1)^{f(10)}\ket{-+} - (-1)^{f(11)}\ket{--}\Bigr].\label{eq:psi5}
 \end{empheq}
 
@@ -196,12 +196,12 @@ Ahora, consideraos el primer caso de los posibles resultados de la medición:
 	\item \textbf{Caso \(\bm{f(00) = 1}\):}. Si \(f(00) = 1\), entonces \(f(01) = f(10) = f(11) = 0\), por lo que el estado post-medición es
 
 	      \begin{align*}
-		      \ket{\psi}^{\text{p.m.}}             & = \dfrac{1}{2}\Bigl((-1)^{1}\ket{++} + (-1)^{0}\ket{+-} + (-1)^{0}\ket{-+} - (-1)^{0}\ket{--}\Bigr),                                                                                                                                                                                                                                                                                                                                                                                             \\
-		                                           & = \dfrac{1}{2}\Bigl(-\ket{++} + \ket{+-} + \ket{-+} - \ket{--}\Bigr),                                                                                                                                                                                                                                                                                                                                                                                                                            \\
-		                                           & = \dfrac{1}{2}\Biggl[-\Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr) + \Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr) + \Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr) - \Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)\Biggr],                                                  \\
-		                                           & = \begin{multlined}[t]\dfrac{1}{4}\Biggl[-\ket{00} - \ket{01} - \ket{10} - \ket{11} + \ket{00} - \ket{01} + \ket{10} + \ket{11}\\ + \ket{00} + \ket{01} - \ket{10} - \ket{11} - \ket{00} + \ket{01} + \ket{10} - \ket{11}\Biggr],\end{multlined} \\
-		                                           & = \dfrac{1}{4}\Bigl[-4\ket{11}\Bigr],                                                                                                                                                                                                                                                                                                                                                                                                                                                            \\
-		                                           & = -\ket{11},                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     \\
+		      \ket{\psi}^{\text{p.m.}}             & = \dfrac{1}{2}\Bigl((-1)^{1}\ket{++} + (-1)^{0}\ket{+-} + (-1)^{0}\ket{-+} - (-1)^{0}\ket{--}\Bigr),                                                                                                                                                                                                                                                                                                                                                                                            \\
+		                                           & = \dfrac{1}{2}\Bigl(-\ket{++} + \ket{+-} + \ket{-+} - \ket{--}\Bigr),                                                                                                                                                                                                                                                                                                                                                                                                                           \\
+		                                           & = \dfrac{1}{2}\bigl[-\Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr) + \Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr) + \Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} + \ket{1}}{\sqrt{2}}\Biggr) - \Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)\Biggl(\tfrac{\ket{0} - \ket{1}}{\sqrt{2}}\Biggr)\Biggr],                                                  \\
+		                                           & = \begin{multlined}[t]\dfrac{1}{4}\bigl[-\ket{00} - \ket{01} - \ket{10} - \ket{11} + \ket{00} - \ket{01} + \ket{10} + \ket{11}\\ + \ket{00} + \ket{01} - \ket{10} - \ket{11} - \ket{00} + \ket{01} + \ket{10} - \ket{11}\Biggr],\end{multlined} \\
+		                                           & = \dfrac{1}{4}\Bigl[-4\ket{11}\Bigr],                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\
+		                                           & = -\ket{11},                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    \\
 		      \Aboxedmain{\ket{\psi}^{\text{p.m.}} & \propto \ket{11}.}
 	      \end{align*}
 \end{enumerate}
