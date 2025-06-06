@@ -1,0 +1,52 @@
+%! TeX program = lualatex
+\documentclass[twoside, digital, 11pt]{fc-hw-template}
+
+\title{Machines Logic and Quantum Physics}
+\author{Marcos López Merino}
+\instructor{Dr. Salvador E. Venegas Andraca}
+\duedate{2025-06-04}
+\assignno{}
+\group{7169}
+\semester{Sem. 2025--2}
+\subject{Computación Cuántica I}
+
+% Custom bookmark 
+\makeatletter
+\let\oldHy@writebookmark\Hy@writebookmark
+\renewcommand{\Hy@writebookmark}[2]{%
+    \oldHy@writebookmark{#1}{Problema #2}%
+}
+\makeatother
+
+%%%%%%%%%% Specific packages %%%%%%%%%%
+\usepackage{phfqit}
+\usepackage[svgnames]{xcolor}
+\usepackage{biblatex}
+
+%%%%%%%%%% Definitions %%%%%%%%%%
+% Colores
+\definecolor{aliceblue}{HTML}{1f77b4}
+\definecolor{bobred}{HTML}{d62728}
+\definecolor{charliegreen}{HTML}{2ca02c}
+\definecolor{abmagenta}{HTML}{e377c2}
+\definecolor{canorange}{HTML}{ff7f0e}
+
+\addbibresource{bibliography.bib}
+
+\renewcommand\refname{Referencias}
+\begin{document}
+\maketitle
+
+``Aunque las verdades de la lógica y las matemáticas puras son objetivas e independientes de cualquier hecho contingente o de leyes de la naturaleza, nuestro conocimiento acerca de estas verdades depende enteramente de la comprensión que tenemos sobre las leyes de la física.''\cite{deutschMachinesLogicQuantum1999}
+
+Una cuestión inherente del conocimiento es que siempre está sujeto a revisión. Si bien suele estar descrito por un lenguaje preciso y formal, capaz de describir la realidad física, nuestro accesos a las verdades lógicas y matemáticas está mediado por los procesos físicos que utilizamos para aterrizar ese conocimiento.
+
+A medida que el conocimiento avanza, también lo hacen la complejidad computacional y la dificultad de los problemas que se pueden resolver. Un paso natural ha sido delegar la tarea de verificar la validez de un enunciado lógico o abstracto a una máquina. Pasamos así del ``computador humano'' a una máquina capaz de replicar su eficiencia siguiendo un conjunto finito de instrucciones. Formalizar esta noción de ``eficiencia'' es lo que da origen a la computación clásica, representada por la máquina de Turing. A partir de este modelo, la computación deja de percibirse como una noción puramente lógica y pasa a entenderse como un proceso físico, lo cual introduce una serie de limitaciones inherentes tanto a la lógica como a la computación clásica.
+
+Sin embargo, la computación cuántica redefine este panorama. A diferencia de la computación clásica, que opera preparando los bits en estados bien definidos (0 o 1), la computación cuántica aprovecha un recurso fundamental de la mecánica cuántica: la existencia de estados superpuestos. Esta propiedad se traduce a la noción de interferencia cuántica, que consiste en la superposición de posibles resultados que pueden sumarse o cancelarse entre sí. Esto aporta una ventaja fundamental, ya que permite que ciertos procesos antes intratables se resuelvan en tiempos razonables.
+
+Un ejemplo inmediato es el algoritmo de Shor, que permite factorizar números enteros en sus factores primos, con implicaciones directas en la criptografía. En general, la computación cuántica ofrece la posibilidad de simular el comportamiento de cualquier sistema físico finito con una complejidad, a lo mas, polinomial. De esta manera, la computación cuántica amplía nuestra comprensión de la computación al demostrar que esta no es una noción puramente abstracta, sino un proceso físico cuyo alcance depende de las leyes de la física subyacentes. La computabilidad, por tanto, está a su vez limitada y potenciada por el marco físico en el que opera.
+
+Este nuevo paradigma no solo redefine la noción de computación, sino que también plantea inquietudes filosóficas. En particular, surge la pregunta de si confiar en resultados cuánticos compromete el valor bien establecido de las demostraciones matemáticas, tradicionalmente concebidas como procesos lógicos verificables paso a paso. Este temor, sin embargo, es infundado, pues aunque no podamos verificar cada uno de los pasos del proceso, el hecho de que el resultado obtenido sea alguno de los posibles resultados válidos es suficiente para considerarlo confiable. En este sentido, la demostración se convierte en el proceso de computación en sí mismo.
+\printbibliography
+\end{document}
