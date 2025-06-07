@@ -1,5 +1,5 @@
 %! TeX program = lualatex
-\documentclass[twoside, digital, 11pt]{fc-hw-template}
+\documentclass[digital, 11pt]{fc-hw-template}
 
 \title{Machines Logic and Quantum Physics}
 \author{Marcos López Merino}
@@ -9,14 +9,6 @@
 \group{7169}
 \semester{Sem. 2025--2}
 \subject{Computación Cuántica I}
-
-% Custom bookmark 
-\makeatletter
-\let\oldHy@writebookmark\Hy@writebookmark
-\renewcommand{\Hy@writebookmark}[2]{%
-    \oldHy@writebookmark{#1}{Problema #2}%
-}
-\makeatother
 
 %%%%%%%%%% Specific packages %%%%%%%%%%
 \usepackage{phfqit}
